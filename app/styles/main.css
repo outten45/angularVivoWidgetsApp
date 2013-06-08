@@ -1,0 +1,72 @@
+/* Will be compiled down to a single stylesheet with your sass files */
+
+.pure-button-success,
+.pure-button-error,
+.pure-button-warning,
+.pure-button-secondary {
+   color: white;
+   border-radius: 4px;
+   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.pure-button-success {
+   background: rgb(76, 201, 71); /* this is a green */
+}
+
+.pure-button-error {
+   background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.pure-button-warning {
+   background: orange;
+}
+
+.pure-button-secondary {
+   background: #1F8DD6; /* this is a light blue */
+}
+
+.pure-button-xsmall {
+   font-size: 70%;
+}
+
+.pure-button-small {
+   font-size: 85%;
+}
+
+.pure-button-large {
+   font-size: 110%;
+}
+
+.pure-button-xlarge {
+   font-size: 125%;
+}
+
+.label {
+   
+}
+.table-row {
+   padding: 0.5em; 
+   border-top: 1px solid #ccc;
+}
+
+.formatted-result {
+   font-size: 90%;
+   border: 1px solid #ccc;
+   /* margin: 30px; */
+   background: #eee; 
+   overflow: auto;
+   height: 400px;
+   width: 80%;
+}
+
+.raw {
+   padding: 2em;
+}
+
+.footer {
+   background: none repeat scroll 0 0 #111111;
+   color: #666666;
+   font-size: 80%;
+   padding: 1em;
+   text-align: center;
+}

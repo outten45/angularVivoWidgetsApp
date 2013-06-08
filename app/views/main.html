@@ -1,0 +1,50 @@
+<div class="splash pure-u-1">
+  <form class="pure-form">
+    <fieldset>
+      Organization URL:
+      <input type="text" ng-model="organizationUri" class="pure-input-2-3 pure-input-2-3">
+      <button class="pure-button pure-button-secondary pure-button-small"
+              ng-click="goToOrg()">
+        Load
+      </button>
+    </fieldset>
+  </form>
+</div>
+
+<div class="pure-u-1">
+  <h2>Faculty</h2>
+</div>
+
+<div class="pure-g-r" ng-repeat="f in faculty">
+  <div class="pure-u-1-2">
+    <div class="table-row">
+      {{f.label}}
+    </div>
+  </div>
+  <div class="pure-u-1-2">
+    <div class="table-row">
+      <em>{{f.title}}</em>
+    </div>
+  </div>
+</div>
+
+<div class="pure-u-1 raw">
+
+  <button class="pure-button pure-button-small"
+          ng-show="!isShowingOrgJson()"
+          ng-click="showOrgJson(true)">
+    Show Organization JSON
+  </button>
+
+  <button class="pure-button pure-button-small"
+          ng-show="isShowingOrgJson()"
+          ng-click="showOrgJson(false)">
+    Hide Organization JSON
+  </button>
+
+  <pre class="formatted-result" ng-show="isShowingOrgJson()">{{ faculty | json }}</pre>
+</div>
+
+<div class="footer pure-u-1">
+  Source code available on github.
+</div>
