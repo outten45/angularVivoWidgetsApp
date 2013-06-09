@@ -12,17 +12,19 @@
 </div>
 
 <div class="pure-u-1">
-  <h2>Faculty</h2>
+  <h2>Faculty in {{ organizationName }}</h2>
 </div>
 
 <div class="pure-g-r" ng-repeat="f in faculty">
-  <div class="pure-u-1-2">
-    <div class="table-row">
-      {{f.label}}
+  <div class="pure-u-1-3">
+    <div class="row-label">
+      <a href="#" ng-click="setCurrentPerson(f)" prevent-click>
+        {{f.label}}
+      </a>
     </div>
   </div>
-  <div class="pure-u-1-2">
-    <div class="table-row">
+  <div class="pure-u-2-3">
+    <div class="row-other">
       <em>{{f.title}}</em>
     </div>
   </div>
@@ -30,13 +32,13 @@
 
 <div class="pure-u-1 raw">
 
-  <button class="pure-button pure-button-small"
+  <button class="pure-button pure-button-small pure-button-secondary"
           ng-show="!isShowingOrgJson()"
           ng-click="showOrgJson(true)">
     Show Organization JSON
   </button>
 
-  <button class="pure-button pure-button-small"
+  <button class="pure-button pure-button-small pure-button-secondary"
           ng-show="isShowingOrgJson()"
           ng-click="showOrgJson(false)">
     Hide Organization JSON

@@ -1,0 +1,117 @@
+@header-color: #ffd;
+@header-bg: #0680cd;
+@base: #efefef;
+@secondary: #003366;
+// #e5eddc;
+@action: #235fc9;
+
+@respond: 767px;
+
+.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+body {
+   background: @base;
+}
+a {
+   color: @action;
+}
+
+// pure stuff
+.pure-button-success,
+.pure-button-error,
+.pure-button-warning,
+.pure-button-secondary {
+   color: white;
+   border-radius: 4px;
+   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.pure-button-success {
+   background: rgb(76, 201, 71); /* this is a green */
+}
+
+.pure-button-error {
+   background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.pure-button-warning {
+   background: orange;
+}
+
+.pure-button-secondary {
+   background: @secondary;
+   color: #fff;
+   font-weight: bold;
+}
+
+.pure-button-xsmall {
+   font-size: 70%;
+}
+
+.pure-button-small {
+   font-size: 85%;
+}
+
+.pure-button-large {
+   font-size: 110%;
+}
+
+.pure-button-xlarge {
+   font-size: 125%;
+}
+
+
+.row-label, .row-other {
+   padding: 0.5em;
+   border-top: 1px solid #ccc;
+}
+
+@media (max-width:767px) {
+   .row-other {
+      padding: 0.5em;
+      border-top: 0px;
+   }
+}
+
+.formatted-result {
+   font-size: 90%;
+   border: 1px solid #ccc;
+   /* margin: 30px; */
+   background: #631323;
+   color: #fff;
+   overflow: auto;
+   height: 400px;
+   width: 80%;
+   .rounded-corners(10px);
+}
+.container {
+   padding: 1em;
+}
+.header {
+   padding: 0.5em;
+   background: @header-bg;
+   color: #e8e5e2;
+   .pure-menu-heading {
+      color: @header-color;
+   }
+}
+
+
+.raw {
+   padding: 2em;
+}
+
+.footer {
+   background: none repeat scroll 0 0 #111111;
+   color: #666666;
+   font-size: 80%;
+   padding: 1em;
+   text-align: center;
+   .rounded-corners;
+}

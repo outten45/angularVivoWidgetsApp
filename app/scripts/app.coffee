@@ -11,6 +11,10 @@ angular.module('angularVivoWidgetsApp', [])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
 
+      .when '/faculty/:facultyId',
+        templateUrl: 'views/faculty_member.html',
+        controller: 'FacultyMemberCtrl'
+
       .otherwise
         redirectTo: '/'
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularVivoWidgetsApp')
-  .controller 'MainCtrl', ['$scope', '$http', '$routeParams', '$location', ($scope, $http, $routeParams, $location) ->
+  .controller 'MainCtrl', ['$scope', '$http', '$routeParams', '$location', 'CurrentFaculty', ($scope, $http, $routeParams, $location, CurrentFaculty) ->
 
     # setup showing of the json
     showingOrgJson = false
@@ -11,12 +11,13 @@ angular.module('angularVivoWidgetsApp')
       showingOrgJson
 
 
-
     orgId = if $routeParams.orgId? then $routeParams.orgId else "org50000936"
-    setOrgId = () ->
+    setupOrg = () ->
+      if $scope.faculty.length > 0
+        $scope.organizationName = $scope.faculty[0].attributes.organizationName
       if $scope.organizationUri?
         match = /(org(\d)+)$/.exec($scope.organizationUri)
-        console.log("match: " + match[0] + "\n" + match[1])
+        # console.log("match: " + match[0] + "\n" + match[1])
         orgId = match[0] if match[0]?
 
     $scope.organizationUri = "https://scholars.duke.edu/individual/#{orgId}"
@@ -28,19 +29,29 @@ angular.module('angularVivoWidgetsApp')
     # setup and load faculty
     $scope.faculty = []
     resultSuccess = (data, status) ->
-        # console.log(data)
         $scope.faculty = data
-        setOrgId()
+        setupOrg()
+
     $scope.loadOrgFaculty = () ->
-      # alert('mode it')
-      console.log(url())
       $http.jsonp(url()).success(resultSuccess)
-      # alert('nothing again')
 
     $scope.loadOrgFaculty()
 
     $scope.goToOrg = () ->
-      setOrgId()
+      setupOrg()
       $location.path("/orgs/#{orgId}")
+
+    $scope.organizationName = ""
+
+    $scope.currentPerson = CurrentFaculty.person
+    $scope.setCurrentPerson = (p) ->
+      $scope.currentPerson = p
+
+      match = /(([a-zA-z0-9])+)$/.exec(p.uri)
+      # console.log("person match: " + match[0] + "\n" + match[1])
+      personId = match[0] if match[0]?
+
+      $location.path("/faculty/#{personId}")
+      false
 
   ]

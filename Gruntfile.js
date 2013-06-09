@@ -18,6 +18,8 @@ module.exports = function (grunt) {
     yeomanConfig.app = require('./component.json').appPath || yeomanConfig.app;
   } catch (e) {}
 
+  // grunt.loadNpmTasks('grunt-contrib-less');
+
   grunt.initConfig({
     yeoman: yeomanConfig,
     watch: {
@@ -32,6 +34,10 @@ module.exports = function (grunt) {
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass']
+      },
+      less: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
+        tasks: ['less:dist']
       },
       livereload: {
         files: [
@@ -139,6 +145,20 @@ module.exports = function (grunt) {
         options: {
           debugInfo: true
         }
+      }
+    },
+    less: {
+      dist: {
+        options: {
+          paths: '<%= yeoman.app %>/styles'
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: '{,*/}*.less',
+          dest: '.tmp/styles',
+          ext: '.css'
+        }]
       }
     },
     concat: {
@@ -265,6 +285,7 @@ module.exports = function (grunt) {
   grunt.registerTask('server', [
     'clean:server',
     'coffee:dist',
+    'less:dist',
     'compass:server',
     'livereload-start',
     'connect:livereload',
@@ -283,17 +304,18 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'jshint',
-    'test',
+    // 'test',
     'coffee',
+    'less',
     'compass:dist',
     'useminPrepare',
     'imagemin',
     'cssmin',
     'htmlmin',
-    'concat',
+    'concat:dist',
     'copy',
     'cdnify',
-    'ngmin',
+    // 'ngmin',
     'uglify',
     'rev',
     'usemin'
