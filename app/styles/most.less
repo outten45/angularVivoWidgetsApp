@@ -1,9 +1,11 @@
 @header-color: #ffd;
-@header-bg: #0680cd;
+@header-bg: #003366;
 @base: #efefef;
-@secondary: #003366;
+@secondary: #0680cd;
 // #e5eddc;
 @action: #235fc9;
+
+@accent: #a1b70d;
 
 @respond: 767px;
 
@@ -72,11 +74,68 @@ a {
    border-top: 1px solid #ccc;
 }
 
-@media (max-width:767px) {
+@media (max-width:@respond) {
    .row-other {
       padding: 0.5em;
       border-top: 0px;
    }
+}
+
+.container {
+   width: 80%;
+   margin: 0 auto;
+   margin-bottom: 30px;
+   @media (max-width:@respond) {
+      width: 95%;
+   }
+}
+
+.sidebar {
+   padding: 5px;
+   .rounded-corners;
+   background: #fff;
+   margin: 4px;
+   border: 2px solid #444;
+   h3 {
+      margin: 3px 0;
+      border-bottom: 1px solid @accent;
+   }
+   > .datum {
+      margin: 5px 1px;
+      > .addr {
+         margin: 10px 0;
+         font-size: 0.9em;
+      }
+   }
+}
+
+.main-content {
+   padding: 0 0.2em;
+   h2 {
+      border-bottom: 2px solid @accent;
+      em {
+         font-size: 0.8em;
+      }
+   }
+}
+
+.profile {
+
+   > .menu {
+      padding: 10px 0 0 0;
+      background-color: @base;
+      button {
+         margin: 3px;
+      }
+   }
+   .pure-menu .pure-menu-open {
+      background-color: @base;
+   }
+}
+
+
+.active {
+   background-color: #a1b70d;
 }
 
 .formatted-result {

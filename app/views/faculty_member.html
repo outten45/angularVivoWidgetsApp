@@ -1,55 +1,182 @@
-<div class="pure-u-1">
-  <h2>
-    {{ facultyMember.label }}
-    <em class="title">{{ facultyMember.title }}</em>
-  </h2>
-</div>
+<div class="pure-g-r profile">
+  <div class="pure-u-4-5">
+    <div class="main-content">
+      <h2>
+        {{ facultyMember.attributes.firstName }}
+        
+        {{ facultyMember.attributes.lastName }}
+        <em class="title" ng-show="facultyMember.title">- {{ facultyMember.title }}</em>
+      </h2>
 
-<div ng-show="facultyMember.attributes.primaryEmail">
-  <div class="pure-u-1-3">
-    Email
-  </div>
-
-  <div class="pure-u-2-3">
-    <a href="mailto:{{ facultyMember.attributes.primaryEmail }}">
-      {{ facultyMember.attributes.primaryEmail }}
-    </a>
-  </div>
-</div>
-
-<div class="pure-u-1" ng-show="facultyMember.attributes.overview">
-  <h4>Overview</h4>
-  <span ng-bind-html-unsafe="facultyMember.attributes.overview"></span>
-</div>
-
-<div class="pure-u-1" ng-show="facultyMember.publications[0]">
-  <h4>Publications</h4>
-  
-  <div class="pure-g-r" ng-repeat="pub in facultyMember.publications">
-    <div class="pure-u-1">
-      <div class="row-label">
-          {{pub.label}} {{pub.attributes.year}}
+      <div ng-show="facultyMember.attributes.overview">
+        <h4>Overview</h4>
+        <span ng-bind-html-unsafe="facultyMember.attributes.overview | truncate:1000"></span>
       </div>
     </div>
   </div>
 
+  <div class="pure-u-1-5">
+    <div class="sidebar">
+      <h3>Office Contact</h3>
+      <div class="datum" ng-show="facultyMember.attributes.primaryEmail">
+        <a href="mailto:{{ facultyMember.attributes.primaryEmail }}">
+          {{ facultyMember.attributes.primaryEmail }}
+        </a>
+      </div>
+      <div class="datum" ng-show="facultyMember.attributes.phoneNumber">
+        <a href="tel:{{ facultyMember.attributes.phoneNumber }}"
+           ng-show="facultyMember.attributes.phoneNumber">
+          {{ facultyMember.attributes.phoneNumber }}
+        </a>
+      </div>
+      <div class="datum" ng-show="facultyMember.attributes.phoneNumber">
+        <div class="addr" ng-repeat="addr in facultyMember.addresses">
+          {{ addr.label }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pure-menu pure-menu-open pure-menu-horizontal menu">
+    <ul>
+      <li>
+        <button class="pure-button pure-button-smalll pure-button-secondary"
+                ng-click="showArea('publications')"
+                ng-class="{active: isShowingArea('publications')}">
+          Publications
+        </button>
+      </li>
+
+      <li>
+        <button class="pure-button pure-button-smalll pure-button-secondary"
+                ng-click="showArea('grants')"
+                ng-class="{active: isShowingArea('grants')}">
+          Grants
+        </button>
+      </li>
+
+      <li>
+        <button class="pure-button pure-button-smalll pure-button-secondary"
+                ng-click="showArea('courses')"
+                ng-class="{active: isShowingArea('courses')}">
+          Courses
+        </button>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="pure-u-1" ng-show="isShowingArea('publications')">
+    <h4>Publications</h4>
+    
+    <div class="pure-g-r" ng-repeat="pub in facultyMember.publications">
+      <div class="pure-u-1">
+        <div class="row-label">
+          {{pub.label}} {{pub.attributes.year}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pure-u-1" ng-show="isShowingArea('grants')">
+    <h4>Grants</h4>
+
+    <div class="pure-g-r" ng-repeat="grant in facultyMember.grants">
+      <div class="pure-u-1">
+        <div class="row-label">
+          {{grant.label}} {{grant.attributes.year}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pure-u-1" ng-show="isShowingArea('courses')">
+    <h4>Courses</h4>
+
+    <div class="pure-g-r" ng-repeat="course in facultyMember.courses">
+      <div class="pure-u-1">
+        <div class="row-label">
+          {{course.label}} 
+          <em>{{course.attributes.roleName}}</em>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pure-u-1 raw">
+
+    <button class="pure-button pure-button-small pure-button-secondary"
+            ng-show="!isShowingFacultyJson()"
+            ng-click="showFacultyJson(true)">
+      Show Faculty JSON
+    </button>
+
+    <button class="pure-button pure-button-small pure-button-secondary"
+            ng-show="isShowingFacultyJson()"
+            ng-click="showFacultyJson(false)">
+      Hide Faculty JSON
+    </button>
+
+    <div class="pure-menu pure-menu-open pure-menu-horizontal"
+         ng-show="isShowingFacultyJson()">
+      <ul>
+        <li>
+          <button class="pure-button pure-button-small"
+                  ng-click="showJsonFor('all')">
+            All
+          </button>
+        </li>
+
+        <li>
+          <button class="pure-button pure-button-small"
+                  ng-click="showJsonFor('attributes')">
+            Attributes
+          </button>
+        </li>
+
+        <li>
+          <button class="pure-button pure-button-small"
+                  ng-click="showJsonFor('publications')">
+            Publications
+          </button>
+        </li>
+
+        <li>
+          <button class="pure-button pure-button-small"
+                  ng-click="showJsonFor('grants')">
+            Grants
+          </button>
+        </li>
+
+        <li>
+          <button class="pure-button pure-button-small"
+                  ng-click="showJsonFor('courses')">
+            Courses
+          </button>
+        </li>
+
+        <li>
+          <button class="pure-button pure-button-small"
+                  ng-click="showJsonFor('positions')">
+            Positions
+          </button>
+        </li>
+
+        <li>
+          <button class="pure-button pure-button-small"
+                  ng-click="showJsonFor('addresses')">
+            Addresses
+          </button>
+        </li>
+
+        <!-- <li><a href="#">Flickr</a></li> -->
+      </ul>
+    </div>
+
+    <pre class="formatted-result" ng-show="isShowingFacultyJson()">{{ facultyMemberJson | json }}</pre>
+  </div>
 </div>
-
-
-<div class="pure-u-1 raw">
-
-  <button class="pure-button pure-button-small pure-button-secondary"
-          ng-show="!isShowingFacultyJson()"
-          ng-click="showFacultyJson(true)">
-    Show Faculty JSON
-  </button>
-
-  <button class="pure-button pure-button-small pure-button-secondary"
-          ng-show="isShowingFacultyJson()"
-          ng-click="showFacultyJson(false)">
-    Hide Faculty JSON
-  </button>
-
-  <pre class="formatted-result" ng-show="isShowingFacultyJson()">{{ facultyMember | json }}</pre>
-</div>
-
