@@ -6,7 +6,12 @@ Widgets](https://github.com/OIT-ADS-Web/vivo_widgets).
 
 ## Get Started
 
-You must have node installed and then run.
+You must have [nodejs](http://nodejs.org/) installed and then run the
+following to install yeoman, brower and grunt.
+
+    $ npm install -g yo grunt-cli bower
+
+Next, install the other npm packages:
 
     $ npm install
 
@@ -19,7 +24,8 @@ After running that, you should be able to run the build in server:
 
     $ grunt server
 
-This might automatically open your browser, but if not, navigate to [http://localhost:9000/](http://localhost:9000/).
+This might automatically open your browser, but if not, navigate to
+[http://localhost:9000/](http://localhost:9000/).
 
 You could build a static optimized version by doing:
 
