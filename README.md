@@ -4,7 +4,7 @@ A start to using [AngularJS](http://angularjs.org/) to create a site
 from the JSONP feeds from [VIVO
 Widgets](https://github.com/OIT-ADS-Web/vivo_widgets).  Since most of
 the web is now using [Twitter
-Bootstrop](http://twitter.github.io/bootstrap/), which is a really
+Bootstrap](http://twitter.github.io/bootstrap/), which is a really
 good choice, I decided to try [Pure](http://purecss.io/).  
 
 The initial start to this project was generated with
