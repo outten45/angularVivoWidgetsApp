@@ -2,9 +2,16 @@
 
 A start to using [AngularJS](http://angularjs.org/) to create a site
 from the JSONP feeds from [VIVO
-Widgets](https://github.com/OIT-ADS-Web/vivo_widgets).
+Widgets](https://github.com/OIT-ADS-Web/vivo_widgets).  Since most of
+the web is now using [Twitter
+Bootstrop](http://twitter.github.io/bootstrap/), which is a really
+good choice, I decided to try [Pure](http://purecss.io/).  
 
-## Get Started
+The initial start to this project was generated with
+[Yeoman](http://yeoman.io/). [Yeoman](http://yeoman.io/) was also used
+for generating angular code.
+
+## Getting Started
 
 You must have [nodejs](http://nodejs.org/) installed and then run the
 following to install yeoman, brower and grunt.
