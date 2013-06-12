@@ -37,45 +37,46 @@
     </div>
   </div>
 
+  <div class="pure-u-1">
+    <form class="pure-form">
+      <p>
+        Filter: <input class="pure-input-2-3" ng-model="query" placeholder="publications, grants or courses">
+      </p>
+    </form>
+  </div>
 
   <div class="pure-u-1 pure-menu pure-menu-open pure-menu-horizontal menu">
     <ul>
       <li>
-        <button class="pure-button pure-button-smalll pure-button-secondary"
+        <button class="pure-button pure-button-secondary"
                 ng-click="showArea('publications')"
                 ng-class="{active: isShowingArea('publications')}">
-          Publications
+          Publications ({{filteredPubs.length}})
         </button>
       </li>
 
       <li>
-        <button class="pure-button pure-button-smalll pure-button-secondary"
+        <button class="pure-button pure-button-secondary"
                 ng-click="showArea('grants')"
                 ng-class="{active: isShowingArea('grants')}">
-          Grants
+          Grants ({{filteredGrants.length}})
         </button>
       </li>
 
       <li>
-        <button class="pure-button pure-button-smalll pure-button-secondary"
+        <button class="pure-button pure-button-secondary"
                 ng-click="showArea('courses')"
                 ng-class="{active: isShowingArea('courses')}">
-          Courses
+          Courses ({{filteredCourses.length}})
         </button>
       </li>
     </ul>
   </div>
 
-  <div class="pure-u-1">
-    <p>
-      Filter: <input class="pure-input-2-3" ng-model="query">
-    </p>
-  </div>
-
   <div class="pure-u-1" ng-show="isShowingArea('publications')">
     <h4>Publications</h4>
     
-    <div class="pure-g-r" ng-repeat="pub in facultyMember.publications | filter:query">
+    <div class="pure-g-r" ng-repeat="pub in (filteredPubs = (facultyMember.publications | filter:query))">
       <div class="pure-u-1">
         <div class="row-label">
           {{pub.label}} {{pub.attributes.year}}
@@ -88,7 +89,7 @@
   <div class="pure-u-1" ng-show="isShowingArea('grants')">
     <h4>Grants</h4>
 
-    <div class="pure-g-r" ng-repeat="grant in facultyMember.grants | filter:query">
+    <div class="pure-g-r" ng-repeat="grant in (filteredGrants = (facultyMember.grants | filter:query))">
       <div class="pure-u-1">
         <div class="row-label">
           {{grant.label}} {{grant.attributes.year}}
@@ -101,7 +102,7 @@
   <div class="pure-u-1" ng-show="isShowingArea('courses')">
     <h4>Courses</h4>
 
-    <div class="pure-g-r" ng-repeat="course in facultyMember.courses | filter:query">
+    <div class="pure-g-r" ng-repeat="course in (filteredCourses = (facultyMember.courses | filter:query))">
       <div class="pure-u-1">
         <div class="row-label">
           {{course.label}} 

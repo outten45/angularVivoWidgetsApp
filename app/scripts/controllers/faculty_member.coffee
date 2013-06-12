@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('angularVivoWidgetsApp')
-  .controller 'FacultyMemberCtrl', ['$scope', '$http', '$routeParams', 'CurrentFaculty', ($scope, $http, $routeParams, CurrentFaculty) ->
+  .controller 'FacultyMemberCtrl', ['$scope', '$http', '$routeParams', '$filter', 'CurrentFaculty', ($scope, $http, $routeParams, $filter, CurrentFaculty) ->
 
     # setup showing of the json
     showingFacultyJson = false
